@@ -36,7 +36,7 @@ export default function ProjectsSection() {
                 onClick={() => setActiveCategory(cat)}
                 className={`relative px-5 py-2 rounded-full text-[13px] font-semibold transition-all duration-250 ${
                   activeCategory === cat
-                    ? 'text-gray-950 shadow-lg shadow-cyan-500/30'
+                    ? 'text-white shadow-lg shadow-cyan-500/30'
                     : 'text-gray-400 border border-white/10 hover:border-white/25 hover:text-gray-200 hover:bg-white/[0.03]'
                 }`}
               >
