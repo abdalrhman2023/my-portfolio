@@ -17,8 +17,8 @@ export default function ContactSection() {
   };
 
   const socialLinks = [
-    { icon: Github, href: 'https://github.com/abdelrahmanbadawi', label: 'GitHub' },
-    { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
+    { icon: Github, href: 'https://github.com/abdalrhman2023', label: 'GitHub' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/in/abdalrhman-badawi/', label: 'LinkedIn' },
     { icon: Mail, href: 'mailto:abdalrhman.mahmoud2030@gmail.com', label: 'Email' },
   ];
 

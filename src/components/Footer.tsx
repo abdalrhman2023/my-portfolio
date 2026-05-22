@@ -59,7 +59,7 @@ export default function Footer() {
             <div className="flex gap-3">
               {[
                 { href: 'https://github.com/abdalrhman2023', icon: Github, label: 'GitHub' },
-                { href: 'https://linkedin.com', icon: Linkedin, label: 'LinkedIn' },
+                { href: 'https://www.linkedin.com/in/abdalrhman-badawi/', icon: Linkedin, label: 'LinkedIn' },
                 { href: 'mailto:abdelrahman@example.com', icon: Mail, label: 'Email' },
               ].map(({ href, icon: Icon, label }) => (
                 <a
