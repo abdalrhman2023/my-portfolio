@@ -16,7 +16,7 @@ const timelineEvents = [
   {
     type: 'certification',
     title: 'Linear Algebra for Machine Learning and Data Science',
-    organization: 'Coursera',
+    organization: 'DeepLearning.AI',
     location: 'Online',
     date: 'Nov 2023',
     description: 'Foundational mathematics for machine learning and data science applications.',
@@ -28,7 +28,7 @@ const timelineEvents = [
   {
     type: 'certification',
     title: 'Python for Data Science, AI & Development',
-    organization: 'Coursera',
+    organization: 'IBM',
     location: 'Online',
     date: 'Jan 2024',
     description: 'Professional certification covering Python programming, data science workflows, and AI development.',
@@ -40,22 +40,21 @@ const timelineEvents = [
   {
     type: 'certification',
     title: 'Foundations: Data, Data, Everywhere',
-    organization: 'Coursera',
+    organization: 'Google',
     location: 'Online',
     date: 'May 2024',
     description: 'Google Career Certificates program covering data analysis fundamentals.',
     icon: Award,
     color: 'from-red-400 to-orange-500',
     sortDate: new Date('2024-05-01'),
-    link: 'https://www.coursera.org/account/accomplishments/certificate/KNZRURZ8ENBT',
   },
   {
     type: 'experience',
     title: 'ML & AI Intern',
     organization: 'Digital Egypt Pioneers Initiative (DEPI)',
-    location: 'Remote / Hybrid',
+    location: 'Remote',
     date: 'Mar 2025 - Aug 2025',
-    description: 'Built ML pipelines using Python, Pandas, Scikit-learn. Performed EDA, feature engineering, statistical modeling. Delivered end-to-end ML capstone project.',
+    description: 'Built and evaluated ML pipelines using Python, Pandas, and Scikit-learn. Performed data cleaning, feature engineering, and EDA. Applied statistical modeling and evaluated models using RMSE, R², MSE. Delivered end-to-end ML capstone project with team.',
     icon: Briefcase,
     color: 'from-emerald-400 to-teal-500',
     sortDate: new Date('2025-03-01'),
@@ -63,7 +62,7 @@ const timelineEvents = [
   {
     type: 'certification',
     title: 'Supervised Machine Learning: Regression and Classification',
-    organization: 'Coursera',
+    organization: 'DeepLearning.AI',
     location: 'Online',
     date: 'Apr 2025',
     description: 'Comprehensive certification in machine learning fundamentals and practical implementation.',
@@ -87,28 +86,26 @@ function TimelineEvent({ event, index }: { event: typeof timelineEvents[0]; inde
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true, margin: '-80px' }}
       transition={{ delay: 0.2 + index * 0.08, duration: 0.5 }}
-      className={`flex items-center gap-4 ${isLeft ? 'flex-row' : 'flex-row-reverse'} mb-12 last:mb-0`}
+      className={`flex items-center gap-4 ${isLeft ? 'md:flex-row' : 'md:flex-row-reverse'} flex-row mb-12 last:mb-0`}
     >
       {/* Content Card */}
-      <div className={`w-[calc(50%-24px)] ${isLeft ? 'text-right' : 'text-left'}`}>
+      <div className={`w-[calc(100%-56px)] md:w-[calc(50%-24px)] ${isLeft ? 'md:text-right' : 'md:text-left'} text-left`}>
         <div className="bg-gray-900/70 border border-white/[0.06] rounded-2xl p-5 hover:border-white/15 hover:bg-gray-900/90 transition-all duration-300 group inline-block">
-          <div className={`flex items-center gap-2 mb-2 ${isLeft ? 'justify-end' : 'justify-start'}`}>
+          <div className={`flex items-center gap-2 mb-2 ${isLeft ? 'md:justify-end' : 'md:justify-start'} justify-start`}>
             <span className="text-xs font-bold text-cyan-400/80 uppercase tracking-wide">
               {event.type.toUpperCase()}
             </span>
           </div>
           <h3 className="text-white font-semibold text-[15px] mb-1">{event.title}</h3>
-          <div className={`flex items-center gap-1.5 text-gray-400 text-[12px] mb-1 ${isLeft ? 'justify-end' : 'justify-start'}`}>
+          <div className={`flex items-center gap-1.5 text-gray-400 text-[12px] mb-1 ${isLeft ? 'md:justify-end' : 'md:justify-start'} justify-start`}>
             <Building size={11} />
             <span>{event.organization}</span>
           </div>
-          <div className={`flex items-center gap-1.5 text-gray-500 text-[12px] mb-1 group-hover:text-gray-400 ${isLeft ? 'justify-end' : 'justify-start'}`}>
-            <div className={`flex items-center ${isLeft ? 'flex-row-reverse' : ''}`}>
-              <MapPin size={11} className={isLeft ? 'ml-1' : 'mr-1'} />
-              <span>{event.location}</span>
-            </div>
+          <div className={`flex items-center gap-1.5 text-gray-500 text-[12px] mb-1 group-hover:text-gray-400 ${isLeft ? 'md:justify-end' : 'md:justify-start'} justify-start`}>
+            <MapPin size={11} />
+            <span>{event.location}</span>
           </div>
-          <div className={`flex items-center gap-1.5 text-gray-600 text-[12px] mb-3 ${isLeft ? 'justify-end' : 'justify-start'}`}>
+          <div className={`flex items-center gap-1.5 text-gray-600 text-[12px] mb-3 ${isLeft ? 'md:justify-end' : 'md:justify-start'} justify-start`}>
             <CalendarDays size={11} />
             <span>{event.date}</span>
           </div>
@@ -118,7 +115,7 @@ function TimelineEvent({ event, index }: { event: typeof timelineEvents[0]; inde
               href={event.link}
               target="_blank"
               rel="noopener noreferrer"
-              className={`inline-flex items-center gap-1 text-xs text-cyan-400 hover:text-cyan-300 mt-2 ${isLeft ? '' : ''}`}
+              className="inline-flex items-center gap-1 text-xs text-cyan-400 hover:text-cyan-300 mt-2"
             >
               View Credential <ExternalLink size={11} />
             </a>
@@ -139,8 +136,8 @@ function TimelineEvent({ event, index }: { event: typeof timelineEvents[0]; inde
         </motion.div>
       </div>
 
-      {/* Empty space for alternating layout */}
-      <div className="w-[calc(50%-24px)]" />
+      {/* Empty space for alternating layout - hidden on mobile */}
+      <div className="hidden md:block md:w-[calc(50%-24px)]" />
     </motion.div>
   );
 }
@@ -157,7 +154,7 @@ export default function TimelineSection() {
           className="mb-16"
         >
           <span className="text-xs font-bold tracking-[0.2em] text-emerald-400/60 uppercase">Background</span>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mt-2">Education & Experience</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mt-2"><span className="gradient-text-animate">Education & Experience</span></h2>
           <p className="text-gray-500 mt-3 text-sm max-w-xl">
             My journey through academia, industry training, and professional development in chronological order.
           </p>
@@ -165,7 +162,7 @@ export default function TimelineSection() {
 
         <div className="relative">
           {/* Vertical line */}
-          <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-cyan-400/25 to-transparent -translate-x-1/2" />
+          <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-cyan-400/25 to-transparent md:-translate-x-1/2" />
 
           {/* Events */}
           {sortedEvents.map((event, i) => (

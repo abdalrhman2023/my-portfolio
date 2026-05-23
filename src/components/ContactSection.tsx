@@ -4,16 +4,13 @@ import { Send, Mail, User, MessageSquare, Linkedin, Github, ExternalLink, MapPin
 
 export default function ContactSection() {
   const [formState, setFormState] = useState({ name: '', email: '', message: '' });
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    // Simulate form submission
-    await new Promise((res) => setTimeout(res, 1200));
-    setIsSubmitting(false);
+    const subject = encodeURIComponent(`Portfolio Contact from ${formState.name}`);
+    const body = encodeURIComponent(`Name: ${formState.name}\nEmail: ${formState.email}\n\nMessage:\n${formState.message}`);
+    window.open(`mailto:abdalrhman.mahmoud2030@gmail.com?subject=${subject}&body=${body}`, '_blank');
     setFormState({ name: '', email: '', message: '' });
-    alert('Thank you for your message! I will get back to you soon.');
   };
 
   const socialLinks = [
@@ -37,8 +34,8 @@ export default function ContactSection() {
           className="text-center mb-12"
         >
           <span className="text-xs font-bold tracking-[0.2em] text-cyan-400/60 uppercase">Get in Touch</span>
-          <h2 className="text-3xl md:text-5xl font-bold text-white mt-2 mb-4">
-            Let's Build Something Together
+          <h2 className="text-3xl md:text-5xl font-bold mt-2 mb-4">
+            <span className="gradient-text-animate">Let's Build Something Together</span>
           </h2>
           <p className="text-gray-500 text-sm max-w-lg mx-auto">
             Have a project in mind or just want to chat about AI, computer vision, or machine learning?
@@ -121,23 +118,12 @@ export default function ContactSection() {
               {/* Submit Button */}
               <motion.button
                 type="submit"
-                disabled={isSubmitting}
                 whileHover={{ scale: 1.01, y: -1 }}
                 whileTap={{ scale: 0.99 }}
-                className="w-full flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold text-sm hover:from-cyan-400 hover:to-blue-400 transition-all duration-200 shadow-lg shadow-cyan-500/25 disabled:opacity-60 disabled:cursor-not-allowed"
+                className="w-full flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold text-sm hover:from-cyan-400 hover:to-blue-400 transition-all duration-200 shadow-lg shadow-cyan-500/25"
               >
-                {isSubmitting ? (
-                  <motion.div
-                    animate={{ rotate: 360 }}
-                    transition={{ repeat: Infinity, duration: 1, ease: 'linear' }}
-                    className="w-5 h-5 border-2 border-white/25 border-t-white rounded-full"
-                  />
-                ) : (
-                  <>
-                    <Send size={16} />
-                    Send Message
-                  </>
-                )}
+                <Send size={16} />
+                Send Message
               </motion.button>
             </form>
           </motion.div>
@@ -156,7 +142,7 @@ export default function ContactSection() {
                 <div className="flex items-start gap-3 text-gray-500 text-sm">
                   <MapPin size={16} className="text-cyan-400 mt-0.5 flex-shrink-0" />
                   <div>
-                    <p>Cairo, Egypt</p>
+                    <p>Mansoura, Egypt</p>
                     <p className="text-xs text-gray-600 mt-1">Available for remote opportunities and collaborations worldwide</p>
                   </div>
                 </div>

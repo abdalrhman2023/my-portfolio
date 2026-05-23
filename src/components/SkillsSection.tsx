@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Code, Brain, Layers, Wrench, Database, Zap } from 'lucide-react';
+import { Code, Brain, Layers, Wrench, Database, Zap, Globe } from 'lucide-react';
 
 const skillCategories = [
   {
@@ -45,6 +45,12 @@ const skillCategories = [
     icon: Zap,
     color: 'from-orange-400 to-red-500',
     skills: ['Teamwork', 'Problem-Solving', 'Analytical Thinking', 'Communication'],
+  },
+  {
+    title: 'Languages',
+    icon: Globe,
+    color: 'from-violet-400 to-purple-500',
+    skills: ['Arabic (Native)', 'English (Professional)'],
   },
 ];
 
@@ -105,7 +111,7 @@ export default function SkillsSection() {
           className="mb-14"
         >
           <span className="text-xs font-bold tracking-[0.2em] text-cyan-400/60 uppercase">Technical Expertise</span>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mt-2">Skills & Technologies</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mt-2"><span className="gradient-text-animate">Skills & Technologies</span></h2>
           <p className="text-gray-500 mt-3 text-sm max-w-xl">
             Tools and frameworks I use to build intelligent systems, from data pipelines to deployed models.
           </p>

@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Download } from 'lucide-react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const navLinks = [
   { label: 'Home', href: '#home' },
+  { label: 'About', href: '#about' },
   { label: 'Skills', href: '#skills' },
   { label: 'Experience', href: '#experience' },
   { label: 'Projects', href: '#projects' },
@@ -14,6 +16,9 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const onScroll = () => {
@@ -37,9 +42,15 @@ export default function Navbar() {
   }, []);
 
   const scrollTo = (href: string) => {
-    const el = document.querySelector(href);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => {
+        const el = document.querySelector(href);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 300);
+    } else {
+      const el = document.querySelector(href);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
     }
     setMenuOpen(false);
   };
@@ -51,7 +62,7 @@ export default function Navbar() {
       transition={{ duration: 0.6, ease: 'easeOut' }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? 'bg-gray-950/70 backdrop-blur-xl border-b border-white/5 shadow-2xl shadow-black/30'
+          ? 'glass-strong border-b border-white/[0.08] shadow-2xl shadow-black/40'
           : 'bg-transparent'
       }`}
     >
@@ -85,10 +96,19 @@ export default function Navbar() {
             </button>
           ))}
           <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="ml-2 text-sm px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 text-white hover:from-cyan-400 hover:to-blue-400 transition-all duration-200 flex items-center gap-1.5 shadow-lg shadow-cyan-500/20"
+          >
+            <Download size={13} />
+            CV
+          </a>
+          <a
             href="https://github.com/abdalrhman2023"
             target="_blank"
             rel="noopener noreferrer"
-            className="ml-3 text-sm px-4 py-2 rounded-full border border-cyan-400/40 text-cyan-400 hover:bg-cyan-400/10 hover:border-cyan-400 transition-all duration-200 flex items-center gap-2"
+            className="ml-2 text-sm px-4 py-2 rounded-full border border-cyan-400/40 text-cyan-400 hover:bg-cyan-400/10 hover:border-cyan-400 transition-all duration-200 flex items-center gap-2"
           >
             GitHub
           </a>

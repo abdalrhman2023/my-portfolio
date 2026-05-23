@@ -1,30 +1,28 @@
 import { motion } from 'framer-motion';
-import { GraduationCap, Award, Layers } from 'lucide-react';
+import { GraduationCap, Award, Layers, Briefcase } from 'lucide-react';
 
 const highlights = [
   {
     icon: GraduationCap,
     title: 'AI Engineering Student',
-    description: 'Studying AI engineering with a focus on machine learning systems, deep neural networks, and computer vision pipelines.',
+    description: 'Studying AI engineering at Mansoura University with coursework in Deep Learning, Computer Vision, Pattern Recognition, and Statistical Modeling.',
   },
   {
     icon: Briefcase,
-    title: 'DEPI Trainee',
-    description: 'AI & ML Trainee at Digital Egypt Pioneers Initiative — building production-grade CV models and deploying ML systems.',
+    title: 'DEPI ML & AI Intern',
+    description: 'Building and evaluating ML pipelines at the Digital Egypt Pioneers Initiative — from data cleaning and EDA to model deployment.',
   },
   {
     icon: Award,
-    title: 'Hackathon Winner',
-    description: 'Awarded Best AI Project at GDG Delta Egypt Hackathon for a real-time PPE detection system.',
+    title: 'Certified Practitioner',
+    description: 'Certified in Supervised ML, Data Science, and Linear Algebra from DeepLearning.AI, IBM, and Google.',
   },
   {
     icon: Layers,
     title: 'Full-Stack AI',
-    description: 'From data collection and labeling to model training, evaluation, and deploying interactive demos via Streamlit.',
+    description: 'From data collection and preprocessing to model training, evaluation, and deploying interactive demos via Streamlit.',
   },
 ];
-
-import { Briefcase } from 'lucide-react';
 
 export default function AboutSection() {
   return (
@@ -39,7 +37,7 @@ export default function AboutSection() {
           className="mb-12"
         >
           <span className="text-xs font-semibold tracking-widest text-cyan-400/60 uppercase">Background</span>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mt-2">About Me</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mt-2"><span className="gradient-text-animate">About Me</span></h2>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -50,13 +48,13 @@ export default function AboutSection() {
             transition={{ duration: 0.7 }}
           >
             <p className="text-gray-400 text-base leading-[1.8] mb-6">
-              I'm Abdelrahman Badawi, an AI Engineering student passionate about building intelligent systems that solve real-world problems. My work sits at the intersection of computer vision, deep learning, and software engineering.
+              I'm Abdalrhman Badawi, an AI Engineering student at Mansoura University with hands-on experience in machine learning, deep learning, and computer vision. My work focuses on building end-to-end ML pipelines and solving real-world problems with intelligent systems.
             </p>
             <p className="text-gray-500 text-sm leading-[1.8] mb-8">
-              Currently training at the Digital Egypt Pioneers Initiative (DEPI), I develop and deploy machine learning models ranging from object detection pipelines to emotion recognition systems. I thrive in fast-paced environments like hackathons, where I can push ideas from concept to working prototype.
+              Currently interning at the Digital Egypt Pioneers Initiative (DEPI), where I build and evaluate ML pipelines using Python, Pandas, and Scikit-learn. I have a strong foundation in statistical modeling, data analysis, and deploying ML solutions — from exploratory data analysis to production-ready models.
             </p>
             <div className="flex flex-wrap gap-3">
-              {['Python', 'PyTorch', 'YOLOv8', 'OpenCV', 'Streamlit', 'Scikit-learn', 'EasyOCR', 'Git'].map((tech) => (
+              {['Python', 'PyTorch', 'YOLOv8', 'OpenCV', 'Scikit-learn', 'Streamlit', 'TensorFlow', 'Pandas', 'SQL', 'Git'].map((tech) => (
                 <span key={tech} className="text-xs px-3 py-1.5 rounded-lg bg-gray-900 border border-white/[0.06] text-gray-400 font-medium">
                   {tech}
                 </span>

@@ -1,12 +1,48 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Sparkles } from 'lucide-react';
+import { MapPin, Sparkles, Download } from 'lucide-react';
 
 const phrases = [
   'Building Computer Vision Models',
   'Developing Object Detection Systems',
   'Scaling AI Solutions',
 ];
+
+// Word-by-word reveal animation variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.08, delayChildren: 0.3 },
+  },
+};
+
+const wordVariants = {
+  hidden: { opacity: 0, y: 20, filter: 'blur(8px)' },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: 'blur(0px)',
+    transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as const },
+  },
+};
+
+function AnimatedWords({ text, className }: { text: string; className?: string }) {
+  return (
+    <motion.span
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      className={className}
+    >
+      {text.split(' ').map((word, i) => (
+        <motion.span key={i} variants={wordVariants} className="inline-block mr-[0.3em]">
+          {word}
+        </motion.span>
+      ))}
+    </motion.span>
+  );
+}
 
 export default function Hero() {
   const [currentPhrase, setCurrentPhrase] = useState(0);
@@ -49,10 +85,11 @@ export default function Hero() {
         }}
       />
 
-      {/* Gradient orbs */}
-      <div className="absolute top-10 -left-64 w-[500px] h-[500px] bg-cyan-500/8 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute -bottom-32 right-0 w-[400px] h-[400px] bg-blue-500/8 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-cyan-400/3 rounded-full blur-[180px] pointer-events-none" />
+      {/* Animated gradient mesh blobs */}
+      <div className="absolute top-10 -left-64 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[140px] pointer-events-none gradient-blob" />
+      <div className="absolute -bottom-32 right-0 w-[400px] h-[400px] bg-blue-500/10 rounded-full blur-[120px] pointer-events-none gradient-blob-delay" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-indigo-400/5 rounded-full blur-[180px] pointer-events-none gradient-blob-slow" />
+      <div className="absolute top-1/4 right-1/4 w-[300px] h-[300px] bg-purple-500/5 rounded-full blur-[100px] pointer-events-none gradient-blob-delay" />
 
       <div className="relative z-10 max-w-7xl w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
@@ -71,41 +108,31 @@ export default function Hero() {
               className="flex flex-wrap gap-2 mb-8"
             >
               <span className="flex items-center gap-1.5 text-xs font-medium text-cyan-400 tracking-widest uppercase border border-cyan-400/25 rounded-full px-3.5 py-1.5 bg-cyan-400/5 w-fit">
-                <MapPin size={11} /> Cairo, Egypt
+                <MapPin size={11} /> Mansoura, Egypt
               </span>
               <span className="flex items-center gap-1.5 text-xs font-medium text-emerald-400/80 tracking-widest uppercase border border-emerald-400/25 rounded-full px-3.5 py-1.5 bg-emerald-400/5 w-fit">
                 <Sparkles size={11} /> DEPI Trainee
               </span>
             </motion.div>
 
-            {/* Name */}
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.3 }}
-              className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white tracking-tight mb-3 leading-[1.05]"
-            >
-              Abdelrahman
-            </motion.h1>
+            {/* Name — with smooth text reveal */}
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white tracking-tight mb-3 leading-[1.05]">
+              <AnimatedWords text="Abdelrahman" />
+            </h1>
 
             <motion.h2
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.35 }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-400 to-blue-500 tracking-tight mb-6"
+              className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6"
             >
-              Badawi
+              <span className="gradient-text-animate">Badawi</span>
             </motion.h2>
 
-            {/* Subtitle */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-gray-500 text-lg md:text-xl mb-8 font-light leading-relaxed"
-            >
-              AI Engineering Student — Machine Learning &amp; Computer Vision Specialist
-            </motion.p>
+            {/* Subtitle — word by word */}
+            <p className="text-gray-500 text-lg md:text-xl mb-8 font-light leading-relaxed">
+              <AnimatedWords text="AI Engineering Student — Machine Learning & Computer Vision Specialist" />
+            </p>
 
             {/* Typewriter */}
             <motion.div
@@ -120,11 +147,12 @@ export default function Hero() {
               </span>
             </motion.div>
 
-            {/* CTA Button */}
+            {/* CTA Buttons */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
+              className="flex flex-wrap gap-3"
             >
               <button
                 onClick={scrollToProjects}
@@ -132,6 +160,15 @@ export default function Hero() {
               >
                 View My Work
               </button>
+              <a
+                href="/resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-6 py-3.5 rounded-full border border-white/15 text-gray-300 font-semibold text-base hover:text-white hover:border-cyan-400/40 hover:bg-cyan-400/5 transition-all duration-300 hover:-translate-y-1 w-fit"
+              >
+                <Download size={16} />
+                Download CV
+              </a>
             </motion.div>
           </motion.div>
 
@@ -143,14 +180,14 @@ export default function Hero() {
             className="flex justify-center items-center"
           >
             <div className="relative w-80 h-96 md:w-96 md:h-[480px] lg:w-[420px] lg:h-[540px]">
-              {/* Gradient background blur */}
-              <div className="absolute inset-0 bg-gradient-to-br from-cyan-500 via-blue-500 to-cyan-500 rounded-3xl blur-2xl opacity-40 animate-pulse" />
+              {/* Gradient background blur — animated */}
+              <div className="absolute inset-0 bg-gradient-to-br from-cyan-500 via-blue-500 to-indigo-500 rounded-3xl blur-2xl opacity-40 gradient-blob" />
 
               {/* Photo container */}
               <div className="relative w-full h-full rounded-3xl overflow-hidden border-2 border-cyan-400/30 shadow-2xl shadow-cyan-500/30 hover:shadow-cyan-500/50 hover:border-cyan-400/50 transition-all duration-500">
                 <img
-                  src="/WhatsApp_Image_2024-10-30_at_10.28.02_ffc60e03-Photoroom.png"
-                  alt="Abdelrahman Badawi"
+                  src="/profile-photo.png"
+                  alt="Abdalrhman Badawi"
                   className="w-full h-full object-cover"
                 />
                 {/* Overlay gradient */}

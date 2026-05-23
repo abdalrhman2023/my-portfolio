@@ -24,8 +24,8 @@ export default function ProjectsSection() {
           className="mb-10"
         >
           <span className="text-xs font-bold tracking-[0.2em] text-sky-400/60 uppercase">Featured Work</span>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-6">
-            Projects
+          <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-6">
+            <span className="gradient-text-animate">Projects</span>
           </h2>
 
           {/* Filter Tabs */}

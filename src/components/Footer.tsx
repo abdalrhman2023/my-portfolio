@@ -1,17 +1,28 @@
 import { Github, Linkedin, Mail, Heart } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const scrollTo = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 300);
+    } else {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   const navLinks = [
     { label: 'Home', id: 'home' },
+    { label: 'About', id: 'about' },
     { label: 'Skills', id: 'skills' },
     { label: 'Experience', id: 'experience' },
     { label: 'Projects', id: 'projects' },
@@ -32,7 +43,7 @@ export default function Footer() {
             </Link>
             <p className="text-gray-600 text-[11px] mb-1">AI Engineering Student</p>
             <p className="text-gray-600 text-xs leading-relaxed max-w-xs">
-              Building intelligent computer vision systems and machine learning solutions. Based in Cairo, Egypt.
+              Building intelligent computer vision systems and machine learning solutions. Based in Mansoura, Egypt.
             </p>
           </div>
 
@@ -60,7 +71,7 @@ export default function Footer() {
               {[
                 { href: 'https://github.com/abdalrhman2023', icon: Github, label: 'GitHub' },
                 { href: 'https://www.linkedin.com/in/abdalrhman-badawi/', icon: Linkedin, label: 'LinkedIn' },
-                { href: 'mailto:abdelrahman@example.com', icon: Mail, label: 'Email' },
+                { href: 'mailto:abdalrhman.mahmoud2030@gmail.com', icon: Mail, label: 'Email' },
               ].map(({ href, icon: Icon, label }) => (
                 <a
                   key={label}
@@ -75,7 +86,7 @@ export default function Footer() {
               ))}
             </div>
             <div className="mt-5">
-              <p className="text-gray-600 text-[11px]">Cairo, Egypt</p>
+              <p className="text-gray-600 text-[11px]">Mansoura, Egypt</p>
               <p className="text-gray-700 text-[11px] mt-1">+20 1095508432</p>
             </div>
           </div>

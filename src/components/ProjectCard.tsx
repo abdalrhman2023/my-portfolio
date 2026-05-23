@@ -86,7 +86,7 @@ export default function ProjectCard({ project, index }: Props) {
         </div>
 
         {/* Card content */}
-        <div className="relative z-10 h-full bg-gray-900/95 rounded-2xl overflow-hidden border border-white/[0.07] group-hover:border-transparent transition-colors duration-300">
+        <div className="relative z-10 h-full bg-gray-900/95 rounded-2xl overflow-hidden border border-white/[0.07] group-hover:border-transparent transition-colors duration-300 shine-effect">
           {/* Image */}
           <div className="relative h-44 overflow-hidden">
             <img
